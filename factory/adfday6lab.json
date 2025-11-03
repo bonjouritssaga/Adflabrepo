@@ -1,0 +1,9 @@
+{
+	"name": "adfday6lab",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "18597321-753c-4081-a3d2-5c92e0d9e694",
+		"tenantId": "e3054106-a46a-4dc0-b86d-2ba84a24cdc4"
+	}
+}
