@@ -7,19 +7,36 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adfday6lab"
 		},
-		"srcconn2csv_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'srcconn2csv'"
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kv700737.vault.azure.net/"
 		},
-		"tgtconn2csv_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'tgtconn2csv'"
+		"srcconn2csv_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "secret700737"
+		},
+		"tgtconn2csv_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "secret700737"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/srcconn2csv')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -28,10 +45,19 @@
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"connectionString": "[parameters('srcconn2csv_connectionString')]"
+					"connectionString": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[parameters('srcconn2csv_properties_typeProperties_connectionString_secretName')]"
+					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/tgtconn2csv')]",
@@ -41,10 +67,19 @@
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"connectionString": "[parameters('tgtconn2csv_connectionString')]"
+					"connectionString": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[parameters('tgtconn2csv_properties_typeProperties_connectionString_secretName')]"
+					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",

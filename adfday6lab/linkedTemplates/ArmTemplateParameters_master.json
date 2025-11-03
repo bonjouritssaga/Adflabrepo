@@ -5,11 +5,14 @@
 		"factoryName": {
 			"value": "adfday6lab"
 		},
-		"srcconn2csv_connectionString": {
-			"value": ""
+		"srcconn2csv_properties_typeProperties_connectionString_secretName": {
+			"value": "secret700737"
 		},
-		"tgtconn2csv_connectionString": {
-			"value": ""
+		"tgtconn2csv_properties_typeProperties_connectionString_secretName": {
+			"value": "secret700737"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://kv700737.vault.azure.net/"
 		},
 		"containerUri": {
 			"value": ""

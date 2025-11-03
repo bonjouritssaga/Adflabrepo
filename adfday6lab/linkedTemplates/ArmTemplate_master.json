@@ -7,13 +7,17 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adfday6lab"
 		},
-		"srcconn2csv_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'srcconn2csv'"
+		"srcconn2csv_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "secret700737"
 		},
-		"tgtconn2csv_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'tgtconn2csv'"
+		"tgtconn2csv_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "secret700737"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kv700737.vault.azure.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -42,11 +46,14 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"srcconn2csv_connectionString": {
-						"value": "[parameters('srcconn2csv_connectionString')]"
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
 					},
-					"tgtconn2csv_connectionString": {
-						"value": "[parameters('tgtconn2csv_connectionString')]"
+					"srcconn2csv_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('srcconn2csv_properties_typeProperties_connectionString_secretName')]"
+					},
+					"tgtconn2csv_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('tgtconn2csv_properties_typeProperties_connectionString_secretName')]"
 					}
 				}
 			},
