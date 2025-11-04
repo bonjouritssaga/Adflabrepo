@@ -7,6 +7,34 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adfday6lab"
 		},
+		"azsqldb_ls_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'azsqldb_ls'"
+		},
+		"ip_ls_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ip_ls'"
+		},
+		"op_ls_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'op_ls'"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kv700737.vault.azure.net/"
+		},
+		"azsqldb_ls_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azsqldbsrvr700737.database.windows.net"
+		},
+		"azsqldb_ls_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "azsqldb"
+		},
+		"azsqldb_ls_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqladmin"
+		},
 		"srcconn2csv_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "secret700737"
@@ -14,10 +42,6 @@
 		"tgtconn2csv_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "secret700737"
-		},
-		"AzureKeyVault1_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://kv700737.vault.azure.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -46,8 +70,26 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"azsqldb_ls_password": {
+						"value": "[parameters('azsqldb_ls_password')]"
+					},
+					"ip_ls_connectionString": {
+						"value": "[parameters('ip_ls_connectionString')]"
+					},
+					"op_ls_connectionString": {
+						"value": "[parameters('op_ls_connectionString')]"
+					},
 					"AzureKeyVault1_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"azsqldb_ls_properties_typeProperties_server": {
+						"value": "[parameters('azsqldb_ls_properties_typeProperties_server')]"
+					},
+					"azsqldb_ls_properties_typeProperties_database": {
+						"value": "[parameters('azsqldb_ls_properties_typeProperties_database')]"
+					},
+					"azsqldb_ls_properties_typeProperties_userName": {
+						"value": "[parameters('azsqldb_ls_properties_typeProperties_userName')]"
 					},
 					"srcconn2csv_properties_typeProperties_connectionString_secretName": {
 						"value": "[parameters('srcconn2csv_properties_typeProperties_connectionString_secretName')]"

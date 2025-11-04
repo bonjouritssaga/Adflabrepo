@@ -5,14 +5,32 @@
 		"factoryName": {
 			"value": "adfday6lab"
 		},
+		"azsqldb_ls_password": {
+			"value": ""
+		},
+		"ip_ls_connectionString": {
+			"value": ""
+		},
+		"op_ls_connectionString": {
+			"value": ""
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://kv700737.vault.azure.net/"
+		},
+		"azsqldb_ls_properties_typeProperties_server": {
+			"value": "azsqldbsrvr700737.database.windows.net"
+		},
+		"azsqldb_ls_properties_typeProperties_database": {
+			"value": "azsqldb"
+		},
+		"azsqldb_ls_properties_typeProperties_userName": {
+			"value": "sqladmin"
+		},
 		"srcconn2csv_properties_typeProperties_connectionString_secretName": {
 			"value": "secret700737"
 		},
 		"tgtconn2csv_properties_typeProperties_connectionString_secretName": {
 			"value": "secret700737"
-		},
-		"AzureKeyVault1_properties_typeProperties_baseUrl": {
-			"value": "https://kv700737.vault.azure.net/"
 		},
 		"containerUri": {
 			"value": ""
