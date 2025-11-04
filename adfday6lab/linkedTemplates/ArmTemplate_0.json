@@ -272,6 +272,108 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "SP2execonSucc",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Copy data1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[sp_DataLoadLog]",
+							"storedProcedureParameters": {
+								"FileName": {
+									"value": "AdventureWorks_Product_categories.csv",
+									"type": "String"
+								},
+								"Log": {
+									"value": {
+										"value": "@concat('Number of files copied',activity('Copy data1').output.dataWritten)",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"PipelineId": {
+									"value": {
+										"value": "@pipeline().RunId",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"Status": {
+									"value": "Success",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "azsqldb_ls",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "SP2execonFail",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Copy data1",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[sp_DataLoadLog]",
+							"storedProcedureParameters": {
+								"FileName": {
+									"value": "AdventureWorks_Product_Categories.csv",
+									"type": "String"
+								},
+								"Log": {
+									"value": {
+										"value": "@string(activity('Copy Data1').output.errors)",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"PipelineId": {
+									"value": {
+										"value": "@pipeline().RunId",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"Status": {
+									"value": "Failed",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "azsqldb_ls",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"policy": {
@@ -280,7 +382,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]"
+				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]",
+				"[concat(variables('factoryId'), '/linkedServices/azsqldb_ls')]"
 			]
 		},
 		{
