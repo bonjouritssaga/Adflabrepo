@@ -2,7 +2,7 @@
 	"name": "DelimitedText1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "srcconn2csv",
+			"referenceName": "ip_ls",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,7 +10,9 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"container": "source"
+				"fileName": "AdventureWorks_Product_Categories.csv",
+				"folderPath": "Input",
+				"container": "lab2"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
